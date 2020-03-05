@@ -1,0 +1,10 @@
+import pandas as pd 
+
+data = pd.read_csv("E:\data\data.csv",names=["Flats", "Area", "Landmark","Society","SubArea"])
+data
+
+df = data["Flats"]
+df
+
+df['Flats'] = df['Flats'].str.extract(r'(\d+)', expand=False)
+df
