@@ -1,0 +1,53 @@
+import pandas as pd 
+
+data = pd.read_csv("E:\data\data.csv",names=["Flats", "Area", "Landmark","Society","SubArea"])
+data
+
+data = pd.read_csv(r"E:\data\address.csv")
+
+df = data["Flats"]
+df
+
+import nltk
+sent = nltk.sent_tokenize(data)
+
+
+data['Flats'] = data['Flats'].map(lambda x: x.lstrip('+-').rstrip('aAbBcC'))
+data['Flats']
+
+df['Flats'] = df['Flats'].str.extract(r'(\d+)', expand=False)
+df
+
+
+extr = df['Flats'].str.extract(r'^(\d{4})', expand=False)
+extr.head()
+
+
+# importing word_tokenize from nltk
+from nltk.tokenize import word_tokenize
+
+# Passing the string text into word tokenize for breaking the sentences
+token = word_tokenize(df)
+token
+
+import re
+import nltk
+nltk.download('stopwords')
+
+
+text = re.sub(r"\[[0-9]*\]","",df)
+
+text = re.sub( r"\s+ " , " ", df)
+text = text.lower()
+text = re.sub(r"\d"," ", text)
+text = re.sub(r"\s+ "," ", text)
+
+
+#Data cleaning and preprocessing
+import re
+import nltk
+nltk.download('stopwords')
+
+from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
+
